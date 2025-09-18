@@ -1,330 +1,330 @@
-!DOCTYPE html
-html lang=fr
-head
-    meta charset=UTF-8
-    meta name=viewport content=width=device-width, initial-scale=1.0
-    titleTableau de Bord Avancé - Projet MGENtitle
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Avancé - Projet MGEN</title>
     
-    link rel=preconnect href=httpsfonts.googleapis.com
-    link rel=preconnect href=httpsfonts.gstatic.com crossorigin
-    link href=httpsfonts.googleapis.comcss2family=Poppinswght@300;400;600;700&display=swap rel=stylesheet
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    style
-         ---=== CSS  Le Design Amélioré ===--- 
-        root {
-            --color-primary #005A30;
-            --color-secondary #00A14B;
-            --color-background #f4f7f6;
-            --color-text #333333;
-            --color-card-bg #ffffff;
-            --color-alert #D32F2F;
-            --color-warning #FFA000;
-            --color-info #2196F3;
+    <style>
+        /* ---=== CSS : Le Design Amélioré ===--- */
+        :root {
+            --color-primary: #005A30;
+            --color-secondary: #00A14B;
+            --color-background: #f4f7f6;
+            --color-text: #333333;
+            --color-card-bg: #ffffff;
+            --color-alert: #D32F2F;
+            --color-warning: #FFA000;
+            --color-info: #2196F3;
         }
 
         body {
-            font-family 'Poppins', sans-serif;
-            background-color var(--color-background);
-            color var(--color-text);
-            margin 0;
-            padding 2rem;
-            -webkit-font-smoothing antialiased;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            margin: 0;
+            padding: 2rem;
+            -webkit-font-smoothing: antialiased;
         }
 
         .header {
-            display flex;
-            align-items center;
-            justify-content center;
-            flex-direction column;
-            text-align center;
-            margin-bottom 2rem;
-            animation fadeInDown 1s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease-out;
         }
         
         .header img.logo {
-            height 50px;
-            margin-bottom 1rem;
+            height: 50px;
+            margin-bottom: 1rem;
         }
 
         .header h1 {
-            color var(--color-primary);
-            font-size 2.2rem;
-            margin 0;
+            color: var(--color-primary);
+            font-size: 2.2rem;
+            margin: 0;
         }
         
         .header p {
-            color #666;
-            font-size 1.1rem;
-            margin-top 0.5rem;
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
         }
 
         .kpi-container {
-            display grid;
-            grid-template-columns repeat(auto-fit, minmax(180px, 1fr));
-            gap 1.5rem;
-            margin-bottom 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .kpi-card {
-            background var(--color-card-bg);
-            padding 1.5rem;
-            border-radius 12px;
-            text-align center;
-            box-shadow 0 4px 15px rgba(0, 0, 0, 0.05);
-            animation fadeInUp 0.5s ease-out forwards;
-            opacity 0;
+            background: var(--color-card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
         }
 
         .kpi-card .number {
-            font-size 3rem;
-            font-weight 700;
+            font-size: 3rem;
+            font-weight: 700;
         }
         
         .kpi-card .text {
-            font-size 1rem;
-            color #666;
+            font-size: 1rem;
+            color: #666;
         }
         
-        .kpi-card.alert .number { color var(--color-alert); }
-        .kpi-card.inprogress .number { color var(--color-warning); }
-        .kpi-card.info .number { color var(--color-info); }
+        .kpi-card.alert .number { color: var(--color-alert); }
+        .kpi-card.inprogress .number { color: var(--color-warning); }
+        .kpi-card.info .number { color: var(--color-info); }
 
         .dashboard-grid {
-            display grid;
-            grid-template-columns repeat(auto-fit, minmax(380px, 1fr));
-            gap 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2rem;
         }
 
         .card {
-            background-color var(--color-card-bg);
-            border-radius 12px;
-            padding 1.5rem 2rem;
-            box-shadow 0 4px 15px rgba(0, 0, 0, 0.08);
-            border-left 5px solid var(--color-secondary);
-            opacity 0;
-            transform translateY(20px);
-            transition all 0.3s ease-in-out;
+            background-color: var(--color-card-bg);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--color-secondary);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease-in-out;
         }
         
-        .cardhover {
-            transform translateY(-5px) scale(1.02);
-            box-shadow 0 8px 25px rgba(0, 0, 0, 0.1);
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .card h2 {
-            display flex;
-            align-items center;
-            font-size 1.4rem;
-            color var(--color-primary);
-            margin-top 0;
+            display: flex;
+            align-items: center;
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            margin-top: 0;
         }
 
         .card h2 .icon {
-            margin-right 0.8rem;
-            width 28px;
-            height 28px;
-            stroke-width 2;
-            flex-shrink 0;
+            margin-right: 0.8rem;
+            width: 28px;
+            height: 28px;
+            stroke-width: 2;
+            flex-shrink: 0;
         }
 
-        .card ul { list-style none; padding-left 0; margin-bottom 0; }
-        .card ul li { padding 0.8rem 0; border-bottom 1px solid #eee; }
-        .card ul lilast-child { border-bottom none; }
+        .card ul { list-style: none; padding-left: 0; margin-bottom: 0; }
+        .card ul li { padding: 0.8rem 0; border-bottom: 1px solid #eee; }
+        .card ul li:last-child { border-bottom: none; }
         
         .card .interactive-item {
-            cursor pointer;
-            transition background-color 0.2s ease;
-            border-radius 5px;
-            padding 5px;
-            margin -5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-radius: 5px;
+            padding: 5px;
+            margin: -5px;
         }
         
-        .card .interactive-itemhover {
-            background-color #f0fdf4;
+        .card .interactive-item:hover {
+            background-color: #f0fdf4;
         }
 
-        .item-title { font-weight 600; display block; margin-bottom 4px; }
-        .item-details { font-size 0.9rem; color #555; padding-left 1rem; display block; }
+        .item-title { font-weight: 600; display: block; margin-bottom: 4px; }
+        .item-details { font-size: 0.9rem; color: #555; padding-left: 1rem; display: block; }
         
-        .alert-card { border-left-color var(--color-alert); }
-        .alert-card h2 { color var(--color-alert); }
+        .alert-card { border-left-color: var(--color-alert); }
+        .alert-card h2 { color: var(--color-alert); }
 
         .progress-bar {
-            width 100%;
-            height 10px;
-            background-color #e0e0e0;
-            border-radius 10px;
-            overflow hidden;
-            margin-top 8px;
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 8px;
         }
 
         .progress-bar-inner {
-            height 100%;
-            background-color var(--color-secondary);
-            border-radius 10px;
-            width 0%;  Initialement à 0, animé par JS 
-            transition width 1.5s ease-in-out;
+            height: 100%;
+            background-color: var(--color-secondary);
+            border-radius: 10px;
+            width: 0%; /* Initialement à 0, animé par JS */
+            transition: width 1.5s ease-in-out;
         }
         
-         --- Modal (fenêtre de détails) --- 
+        /* --- Modal (fenêtre de détails) --- */
         .modal-overlay {
-            position fixed;
-            top 0; left 0;
-            width 100%; height 100%;
-            background rgba(0, 0, 0, 0.6);
-            backdrop-filter blur(5px);
-            display flex;
-            align-items center;
-            justify-content center;
-            opacity 0;
-            visibility hidden;
-            transition opacity 0.3s ease, visibility 0.3s ease;
-            z-index 1000;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
         }
         
-        .modal-overlay.visible { opacity 1; visibility visible; }
+        .modal-overlay.visible { opacity: 1; visibility: visible; }
         
         .modal-content {
-            background white;
-            padding 2rem 2.5rem;
-            border-radius 12px;
-            width 90%;
-            max-width 600px;
-            transform scale(0.9);
-            transition transform 0.3s ease;
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
         }
         
-        .modal-overlay.visible .modal-content { transform scale(1); }
+        .modal-overlay.visible .modal-content { transform: scale(1); }
 
-        .modal-header { display flex; justify-content space-between; align-items center; border-bottom 1px solid #eee; padding-bottom 1rem; margin-bottom 1rem; }
-        .modal-header h3 { margin 0; font-size 1.5rem; color var(--color-primary); }
-        .close-modal { font-size 2rem; cursor pointer; color #aaa; background none; border none; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 1rem; }
+        .modal-header h3 { margin: 0; font-size: 1.5rem; color: var(--color-primary); }
+        .close-modal { font-size: 2rem; cursor: pointer; color: #aaa; background: none; border: none; }
 
-         Animations 
-        @keyframes fadeInDown { from { opacity 0; transform translateY(-20px); } to { opacity 1; transform translateY(0); } }
-        @keyframes fadeInUp { from { opacity 0; transform translateY(20px); } to { opacity 1; transform translateY(0); } }
-        .is-visible { opacity 1; transform translateY(0); }
-    style
-head
-body
+        /* Animations */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .is-visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
 
-    header class=header
-        img src=httpsi.imgur.comk24b7xT.png alt=Logo MGEN class=logo
-        h1Projet  Industrialisation des Comptes de Résultath1
-        pSuivi de l'avancement au 19 Septembre 2025p
-    header
+    <header class="header">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAABpElEQVR4nO3UMQEAAAwCoNm/9CL4sAEfMAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBBjAAnwAB18gNAAAAAElFTkSuQmCC" alt="Logo MGEN" class="logo">
+        <h1>Projet : Industrialisation des Comptes de Résultat</h1>
+        <p>Suivi de l'avancement au 19 Septembre 2025</p>
+    </header>
     
-    section class=kpi-container
-        div class=kpi-card alert style=animation-delay 100ms;
-            div class=number1div
-            div class=textPoint Bloquantdiv
-        div
-        div class=kpi-card inprogress style=animation-delay 200ms;
-            div class=number4div
-            div class=textTâches Activesdiv
-        div
-        div class=kpi-card info style=animation-delay 300ms;
-            div class=number2div
-            div class=textPistes d'Améliorationdiv
-        div
-    section
+    <section class="kpi-container">
+        <div class="kpi-card alert" style="animation-delay: 100ms;">
+            <div class="number">1</div>
+            <div class="text">Point Bloquant</div>
+        </div>
+        <div class="kpi-card inprogress" style="animation-delay: 200ms;">
+            <div class="number">4</div>
+            <div class="text">Tâches Actives</div>
+        </div>
+        <div class="kpi-card info" style="animation-delay: 300ms;">
+            <div class="number">2</div>
+            <div class="text">Pistes d'Amélioration</div>
+        </div>
+    </section>
 
-    main class=dashboard-grid
+    <main class="dashboard-grid">
         
-        div class=card data-delay=400
-            h2
-                svg class=icon fill=none stroke=currentColor viewBox=0 0 24 24 xmlns=httpwww.w3.org2000svgpath stroke-linecap=round stroke-linejoin=round d=M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2zpathsvg
+        <div class="card" data-delay="400">
+            <h2>
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 Feu de Route & Objectifs
-            h2
-            ul
-                li
-                    span class=item-titleRecette Populationspan
-                    span class=item-detailsObjectif  Fin de la recette et des correctifs d'ici strongfin Septembrestrong.span
-                li
-                li
-                    span class=item-titleRecette Cotisationsspan
-                    span class=item-detailsObjectif  Démarrage prévu fin Septembre, mais dépendant de l'accès à l'outil.span
-                li
-            ul
-        div
+            </h2>
+            <ul>
+                <li>
+                    <span class="item-title">Recette "Population"</span>
+                    <span class="item-details">Objectif : Fin de la recette et des correctifs d'ici <strong>fin Septembre</strong>.</span>
+                </li>
+                <li>
+                    <span class="item-title">Recette "Cotisations"</span>
+                    <span class="item-details">Objectif : Démarrage prévu fin Septembre, mais dépendant de l'accès à l'outil.</span>
+                </li>
+            </ul>
+        </div>
         
-        div class=card data-delay=500
-            h2
-                svg class=icon fill=none stroke=currentColor viewBox=0 0 24 24 xmlns=httpwww.w3.org2000svgpath stroke-linecap=round stroke-linejoin=round d=M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065zpathpath stroke-linecap=round stroke-linejoin=round d=M15 12a3 3 0 11-6 0 3 3 0 016 0zpathsvg
+        <div class="card" data-delay="500">
+            <h2>
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 Travaux en Cours
-            h2
-            ul
-                li class=interactive-item data-details=bResponsable b MorganebrbStatut b Expression des besoins rédigée, en attente de la relecture de validation par le métier avant envoi à Thinhinane pour chiffrage.
-                    span class=item-titleDonnées Financièresspan
-                li
-                li class=interactive-item data-details=bResponsable b FabianbrbAvancement b 90%brbDétail b La recette est quasi-terminée. Il reste à effectuer un dernier rework pour remplacer l'âge annuel par l'âge réel, plus précis.
-                    span class=item-titleRecette Populationspan
-                    div class=progress-bardiv class=progress-bar-inner data-progress=90divdiv
-                li
-                li class=interactive-item data-details=bResponsable b LudovicbrbAction b Les variables 'dmeancde' manquantes dans la version de Ludovic doivent être ajoutées dans l'EB Prestations.
-                    span class=item-titleIntégration Dépendancespan
-                li
-                 li class=interactive-item data-details=bContexte b Suite au point avec Thinhinane, l'analyse confirme un souci de paramétrage dans la gestion des ayants droit.brbAction b L'équipe étudie la meilleure façon de corriger ce paramétrage sans impacter les autres lots.
-                    span class=item-titleSuivi Ayants Droitspan
-                li
-            ul
-        div
+            </h2>
+            <ul>
+                <li class="interactive-item" data-details="<b>Responsable :</b> Morgane<br><b>Statut :</b> Expression des besoins rédigée, en attente de la relecture de validation par le métier avant envoi à Thinhinane pour chiffrage.">
+                    <span class="item-title">Données Financières</span>
+                </li>
+                <li class="interactive-item" data-details="<b>Responsable :</b> Fabian<br><b>Avancement :</b> 90%<br><b>Détail :</b> La recette est quasi-terminée. Il reste à effectuer un dernier rework pour remplacer l'âge annuel par l'âge réel, plus précis.">
+                    <span class="item-title">Recette "Population"</span>
+                    <div class="progress-bar"><div class="progress-bar-inner" data-progress="90"></div></div>
+                </li>
+                <li class="interactive-item" data-details="<b>Responsable :</b> Ludovic<br><b>Action :</b> Les variables 'dmeancde' manquantes dans la version de Ludovic doivent être ajoutées dans l'EB Prestations.">
+                    <span class="item-title">Intégration "Dépendance"</span>
+                </li>
+                 <li class="interactive-item" data-details="<b>Contexte :</b> Suite au point avec Thinhinane, l'analyse confirme un souci de paramétrage dans la gestion des ayants droit.<br><b>Action :</b> L'équipe étudie la meilleure façon de corriger ce paramétrage sans impacter les autres lots.">
+                    <span class="item-title">Suivi "Ayants Droit"</span>
+                </li>
+            </ul>
+        </div>
         
-        div class=card alert-card data-delay=600
-            h2
-                svg class=icon fill=none stroke=currentColor viewBox=0 0 24 24 xmlns=httpwww.w3.org2000svgpath stroke-linecap=round stroke-linejoin=round d=M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3zpathsvg
+        <div class="card alert-card" data-delay="600">
+            <h2>
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                 Alertes et Points de Blocage
-            h2
-            ul
-                 li class=interactive-item data-details=bProblème b La recette 'Cotisations' ne peut pas démarrer sans cet accès.brbAction b Sylvie a initié la demande auprès de Rebecca pour obtenir la procédure d'accès en lecture seule sur l'environnement de production.brbStatut b En attente de retour.
-                    span class=item-titleAccès ACCOLADE Bloquéspan
-                li
-            ul
-        div
+            </h2>
+            <ul>
+                 <li class="interactive-item" data-details="<b>Problème :</b> La recette 'Cotisations' ne peut pas démarrer sans cet accès.<br><b>Action :</b> Sylvie a initié la demande auprès de Rebecca pour obtenir la procédure d'accès en lecture seule sur l'environnement de production.<br><b>Statut :</b> En attente de retour.">
+                    <span class="item-title">Accès ACCOLADE Bloqué</span>
+                </li>
+            </ul>
+        </div>
 
-        div class=card data-delay=700
-            h2
-                svg class=icon fill=none stroke=currentColor viewBox=0 0 24 24 xmlns=httpwww.w3.org2000svgpath stroke-linecap=round stroke-linejoin=round d=M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547zpathsvg
+        <div class="card" data-delay="700">
+            <h2>
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
                 Améliorations & Stratégie
-            h2
-            ul
-                li
-                    span class=item-titleArchitecture PowerBI (Expertise Karim)span
-                    span class=item-details
-                        strongRecommandation strong Utiliser des tables de paramétrage multiples pour optimiser les traitements et faciliter la maintenance future.
-                    span
-                li
-                li
-                    span class=item-titleProcessus de Recettespan
-                    span class=item-details
-                        strongManques identifiés strong Nécessité de créer un cahier de recette, un fichier de suivi des anomalies et d'étudier un outil d'automatisation des contrôles.
-                    span
-                li
-            ul
-        div
-    main
+            </h2>
+            <ul>
+                <li>
+                    <span class="item-title">Architecture PowerBI (Expertise Karim)</span>
+                    <span class="item-details">
+                        <strong>Recommandation :</strong> Utiliser des tables de paramétrage multiples pour optimiser les traitements et faciliter la maintenance future.
+                    </span>
+                </li>
+                <li>
+                    <span class="item-title">Processus de Recette</span>
+                    <span class="item-details">
+                        <strong>Manques identifiés :</strong> Nécessité de créer un cahier de recette, un fichier de suivi des anomalies et d'étudier un outil d'automatisation des contrôles.
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </main>
     
-    div class=modal-overlay
-        div class=modal-content
-            div class=modal-header
-                h3 id=modal-titleDétails de la tâcheh3
-                button class=close-modal&times;button
-            div
-            div id=modal-bodydiv
-        div
-    div
+    <div class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Détails de la tâche</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
 
-    script
-        document.addEventListener('DOMContentLoaded', () = {
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.card');
-            cards.forEach(card = {
-                const delay = parseInt(card.getAttribute('data-delay')  '0', 10);
-                setTimeout(() = card.classList.add('is-visible'), delay);
+            cards.forEach(card => {
+                const delay = parseInt(card.getAttribute('data-delay') || '0', 10);
+                setTimeout(() => card.classList.add('is-visible'), delay);
             });
 
-            setTimeout(() = {
+            setTimeout(() => {
                 const progressBars = document.querySelectorAll('.progress-bar-inner');
-                progressBars.forEach(bar = {
+                progressBars.forEach(bar => {
                     const progress = bar.getAttribute('data-progress');
                     bar.style.width = progress + '%';
                 });
@@ -336,16 +336,16 @@ body
             const closeModalBtn = document.querySelector('.close-modal');
             const interactiveItems = document.querySelectorAll('.interactive-item');
 
-            const openModal = (title, details) = {
+            const openModal = (title, details) => {
                 modalTitle.textContent = title;
                 modalBody.innerHTML = details;
                 modalOverlay.classList.add('visible');
             };
 
-            const closeModal = () = modalOverlay.classList.remove('visible');
+            const closeModal = () => modalOverlay.classList.remove('visible');
 
-            interactiveItems.forEach(item = {
-                item.addEventListener('click', (e) = {
+            interactiveItems.forEach(item => {
+                item.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const title = item.querySelector('.item-title').textContent;
                     const details = item.getAttribute('data-details');
@@ -354,10 +354,10 @@ body
             });
 
             closeModalBtn.addEventListener('click', closeModal);
-            modalOverlay.addEventListener('click', (event) = {
+            modalOverlay.addEventListener('click', (event) => {
                 if (event.target === modalOverlay) closeModal();
             });
         });
-    script
-body
-html
+    </script>
+</body>
+</html>
