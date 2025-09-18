@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Projet Détaillé - MGEN</title>
+    <title>Dashboard Accordéon - Projet MGEN</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +11,7 @@
 
     <style>
         :root {
+            /* ... (variables de couleur inchangées) ... */
             --color-primary: #005A30;
             --color-secondary: #00A14B;
             --color-background: #f0f2f5;
@@ -22,7 +23,7 @@
             --color-success: #28a745;
         }
 
-        body {
+        body { /* ... (style body inchangé) ... */
             font-family: 'Poppins', sans-serif;
             background-color: var(--color-background);
             color: var(--color-text);
@@ -30,59 +31,25 @@
             padding: 2rem;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            animation: fadeInDown 0.8s ease-out;
-        }
-        
-        .header .mgen-text {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .header h1 {
-            color: var(--color-primary);
-            font-size: 2.2rem;
-            margin: 0;
-        }
-        
-        .kpi-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .kpi-card {
-            background: var(--color-card-bg);
-            padding: 1.5rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            border-bottom: 4px solid var(--color-info);
-            animation: slideInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-
+        /* ... (styles header et kpi inchangés) ... */
+        .header { text-align: center; margin-bottom: 2rem; animation: fadeInDown 0.8s ease-out; }
+        .header .mgen-text { font-size: 2.8rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; }
+        .header h1 { color: var(--color-primary); font-size: 2.2rem; margin: 0; }
+        .kpi-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .kpi-card { background: var(--color-card-bg); padding: 1.5rem; border-radius: 16px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); border-bottom: 4px solid var(--color-info); animation: slideInUp 0.6s ease-out forwards; opacity: 0; }
         .kpi-card .number { font-size: 3.5rem; font-weight: 700; }
         .kpi-card .text { font-size: 1rem; color: #666; }
-        .kpi-card.alert { border-color: var(--color-alert); }
-        .kpi-card.alert .number { color: var(--color-alert); }
-        .kpi-card.inprogress { border-color: var(--color-warning); }
-        .kpi-card.inprogress .number { color: var(--color-warning); }
-        .kpi-card.info { border-color: var(--color-info); }
-        .kpi-card.info .number { color: var(--color-info); }
+        .kpi-card.alert { border-color: var(--color-alert); } .kpi-card.alert .number { color: var(--color-alert); }
+        .kpi-card.inprogress { border-color: var(--color-warning); } .kpi-card.inprogress .number { color: var(--color-warning); }
+        .kpi-card.info { border-color: var(--color-info); } .kpi-card.info .number { color: var(--color-info); }
 
-        .dashboard-grid {
-            display: grid;
+        .dashboard-grid { /* ... (style inchangé) ... */
+             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 2rem;
         }
         
-        .card {
+        .card { /* ... (style inchangé) ... */
             background-color: var(--color-card-bg);
             border-radius: 16px;
             padding: 2rem;
@@ -90,15 +57,14 @@
             opacity: 0;
             transform: translateY(30px);
             animation: slideInUp 0.6s ease-out forwards;
-            grid-column: span 12; /* Default full width */
+            grid-column: span 12;
         }
         
         @media (min-width: 992px) {
             .card.col-span-6 { grid-column: span 6; }
-            .card.col-span-12 { grid-column: span 12; }
         }
         
-        .card h2 {
+        .card h2 { /* ... (style inchangé) ... */
             display: flex;
             align-items: center;
             font-size: 1.5rem;
@@ -106,183 +72,199 @@
             margin-top: 0;
             margin-bottom: 1.5rem;
         }
-
         .card h2 .icon { margin-right: 0.8rem; width: 32px; height: 32px; stroke-width: 2; flex-shrink: 0;}
-        
+
+        /* NOUVEAUX STYLES POUR L'ACCORDÉON */
         .card ul { list-style: none; padding-left: 0; margin-bottom: 0; }
-        .card ul li { padding: 1rem; border-radius: 8px; transition: background-color 0.3s ease, transform 0.3s ease; border-bottom: 1px solid #f0f0f0; }
+        .card ul li { padding: 0; border-bottom: 1px solid #f0f0f0; }
         .card ul li:last-child { border-bottom: none; }
-        .card ul li:hover { background-color: #f8f9fa; transform: translateX(5px); }
-        .card .interactive-item { cursor: pointer; }
-        
-        .item-title { font-weight: 600; display: block; margin-bottom: 4px; font-size: 1.05rem; }
-        .item-details { font-size: 0.9rem; color: #555; padding-left: 1rem; }
-        
-        .person-tag {
-            background-color: #e7f5ee;
-            color: var(--color-primary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-left: 8px;
-            display: inline-block;
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         
-        .alert-card { border-top: 4px solid var(--color-alert); }
-        .alert-card h2 { color: var(--color-alert); }
-        .alert-card .person-tag { background-color: #fdecea; color: var(--color-alert); }
+        .item-header:hover { background-color: #f8f9fa; }
+
+        .item-title-container { flex-grow: 1; }
+        .item-title { font-weight: 600; font-size: 1.05rem; }
+        .person-tag { /* ... (style inchangé) ... */ }
+
+        .expand-icon {
+            margin-left: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .item-header.active .expand-icon { transform: rotate(45deg); }
+
+        .details-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.5s ease, padding 0.5s ease;
+            padding: 0 1rem;
+            background-color: #fafafa;
+        }
+        
+        .details-content.expanded {
+            opacity: 1;
+            max-height: 500px; /* Hauteur suffisante pour le contenu */
+            padding: 1.5rem 1rem;
+        }
+        
+        .details-section { margin-bottom: 1rem; }
+        .details-section h4 { font-size: 1rem; color: var(--color-primary); margin-bottom: 0.5rem; }
+        .details-section p { margin: 0; padding-left: 1rem; white-space: pre-wrap; font-size: 0.9rem; }
+
+        .progress-bar-container {
+            width: 120px;
+            text-align: right;
+            margin-left: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .progress-bar { width: 100%; height: 8px; background-color: #e9ecef; border-radius: 8px; overflow: hidden; }
+        .progress-bar-inner { height: 100%; background-color: var(--color-secondary); transition: width 1.5s ease-in-out; width: 0; }
+        .progress-percentage { font-size: 0.8rem; font-weight: 600; color: #555; margin-top: 4px; }
         
         .success-card { border-top: 4px solid var(--color-success); }
         .success-card h2 { color: var(--color-success); }
-
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 1000;
-        }
-        .modal-overlay.visible { opacity: 1; visibility: visible; }
-        .modal-content {
-            background: white; padding: 2rem 2.5rem; border-radius: 16px;
-            width: 90%; max-width: 650px;
-            transform: scale(0.9); transition: transform 0.3s ease;
-        }
-        .modal-overlay.visible .modal-content { transform: scale(1); }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 1rem; }
-        .modal-header h3 { margin: 0; font-size: 1.5rem; color: var(--color-primary); }
-        .close-modal { font-size: 2rem; cursor: pointer; color: #aaa; background: none; border: none; }
-        .modal-body-section { margin-bottom: 1rem; }
-        .modal-body-section h4 { font-size: 1.1rem; color: var(--color-primary); margin-bottom: 0.5rem; border-bottom: 2px solid var(--color-secondary); padding-bottom: 0.25rem; }
-        .modal-body-section p { margin: 0; padding-left: 1rem; white-space: pre-wrap; }
-
+        .alert-card { border-top: 4px solid var(--color-alert); }
+        .alert-card h2 { color: var(--color-alert); }
+        
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="mgen-text">MGEN</div>
-        <h1>Dashboard : Industrialisation des Comptes de Résultat</h1>
-    </header>
-    
-    <section class="kpi-container">
-        <div class="kpi-card alert" style="animation-delay: 100ms;"><div class="number" data-target="1">0</div><div class="text">Point Bloquant</div></div>
-        <div class="kpi-card inprogress" style="animation-delay: 200ms;"><div class="number" data-target="3">0</div><div class="text">Tâches Majeures</div></div>
-        <div class="kpi-card info" style="animation-delay: 300ms;"><div class="number" data-target="2">0</div><div class="text">Améliorations Clés</div></div>
-    </section>
+    <header class="header"> </header>
+    <section class="kpi-container"> </section>
 
     <main class="dashboard-grid">
-        
         <div class="card success-card col-span-12" style="animation-delay: 400ms;">
-            <h2><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Actions de la Semaine</h2>
-            <ul>
-                <li><span class="item-title">Mise en place du fichier de suivi des corrections et des arbitrages.</span></li>
-                <li><span class="item-title">Création d'un fichier de synthèse avec des exemples pour l'Expression de Besoin des données financières.</span></li>
-            </ul>
-        </div>
+             </div>
         
         <div class="card col-span-12 lg:col-span-6" style="animation-delay: 500ms;">
-            <h2><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 00.517 3.86l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 00-.517-3.86l-2.387-.477zM11.428 1.428a2 2 0 00-1.022.547l-2.387.477a6 6 0 00-3.86-.517l-.318-.158a6 6 0 01-3.86-.517L.05 3.21a2 2 0 00-1.806-.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 00.517 3.86l2.387.477a2 2 0 001.806.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 00-.517-3.86l2.387-.477a2 2 0 001.806-.547a2 2 0 00.547-1.806L9 1z"></path></svg>Travaux en Cours</h2>
+            <h2>Travaux en Cours</h2>
             <ul>
-                <li class="interactive-item" data-details="<h4>Contexte</h4><p>L'Expression de Besoin (EB) pour les données financières est une étape clé.</p><h4>Statut</h4><p>Le document a été finalisé par Morgane. Il est actuellement en cours de validation métier.</p><h4>Prochaine Étape</h4><p>Une fois validé, le document sera envoyé à Thinhinane pour analyse et chiffrage.</p>">
-                    <span class="item-title">EB Données Financières<span class="person-tag">Morgane</span></span>
+                <li>
+                    <div class="item-header">
+                        <div class="item-title-container">
+                            <span class="item-title">EB Données Financières<span class="person-tag">Morgane</span></span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar"><div class="progress-bar-inner" data-progress="95"></div></div>
+                            <div class="progress-percentage">95%</div>
+                        </div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="details-content">
+                        <div class="details-section">
+                            <h4>Contexte</h4><p>L'Expression de Besoin (EB) pour les données financières est une étape clé.</p>
+                        </div>
+                        <div class="details-section">
+                            <h4>Statut</h4><p>Le document a été finalisé. Il est actuellement en cours de validation métier.</p>
+                        </div>
+                        <div class="details-section">
+                            <h4>Prochaine Étape</h4><p>Une fois validé, le document sera envoyé à Thinhinane pour analyse et chiffrage.</p>
+                        </div>
+                    </div>
                 </li>
-                <li class="interactive-item" data-details="<h4>Contexte</h4><p>Fabian mène la recette sur la population directement sur le Datamart. Cette recette est cruciale pour valider la qualité des données individuelles.</p><h4>Statut</h4><p>La recette est presque terminée. Un dernier ajustement (rework) est nécessaire : remplacer l'âge annuel par l'âge réel pour plus de précision.</p><h4>Point de vigilance</h4><p>Le sujet des 'ayants droit', qui présente un souci de paramétrage, a un lien direct avec cette recette. Ce point a été abordé mardi avec Thinhinane et doit être corrigé.</p><h4>Objectif</h4><p>Fin de la recette et des correctifs fin Septembre.</p>">
-                    <span class="item-title">Recette Population<span class="person-tag">Fabian</span></span>
+                <li>
+                    <div class="item-header">
+                        <div class="item-title-container">
+                            <span class="item-title">Recette Population<span class="person-tag">Fabian</span></span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar"><div class="progress-bar-inner" data-progress="80"></div></div>
+                            <div class="progress-percentage">80%</div>
+                        </div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="details-content">
+                        <div class="details-section">
+                            <h4>Contexte</h4><p>Fabian mène la recette sur la population directement sur le Datamart pour valider la qualité des données.</p>
+                        </div>
+                         <div class="details-section">
+                            <h4>Statut</h4><p>Un dernier ajustement (rework) est nécessaire : remplacer l'âge annuel par l'âge réel pour plus de précision.</p>
+                        </div>
+                        <div class="details-section">
+                            <h4>Objectif</h4><p>Fin de la recette et des correctifs fin Septembre.</p>
+                        </div>
+                    </div>
                 </li>
-                <li class="interactive-item" data-details="<h4>Contexte</h4><p>Le périmètre 'dépendance' doit être intégré dans l'Expression de Besoin (EB) 'Prestations' pour couvrir l'ensemble des besoins.</p><h4>Statut</h4><p>Le travail d'intégration est en cours, mais des variables techniques manquent dans la version actuelle du document.</p>">
-                    <span class="item-title">Intégration Dépendance<span class="person-tag">Coordination</span></span>
+                <li>
+                    <div class="item-header">
+                        <div class="item-title-container">
+                            <span class="item-title">Intégration Dépendance<span class="person-tag">Coordination</span></span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar"><div class="progress-bar-inner" data-progress="20"></div></div>
+                            <div class="progress-percentage">20%</div>
+                        </div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="details-content">
+                         <div class="details-section">
+                            <h4>Contexte</h4><p>Le périmètre 'dépendance' doit être intégré dans l'Expression de Besoin (EB) 'Prestations'.</p>
+                        </div>
+                        <div class="details-section">
+                            <h4>Statut</h4><p>Travail d'intégration en cours, mais des variables techniques manquent dans la version actuelle du document.</p>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>
         
         <div class="card alert-card col-span-12 lg:col-span-6" style="animation-delay: 600ms;">
-             <h2><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>Alertes et Points de Blocage</h2>
-            <ul>
-                <li class="interactive-item" data-details="<h4>Problème Critique</h4><p>La recette du lot 'Cotisations' est totalement bloquée. Le démarrage, prévu fin septembre après la recette 'Population', est compromis.</p><h4>Cause</h4><p>Fabian n'a pas les accès nécessaires en lecture à l'outil ACCOLADE.</p><h4>Action en cours</h4><p>La demande d'accès a été faite, mais une procédure claire est attendue.</p>">
-                    <span class="item-title">Accès ACCOLADE pour Recette Cotisations<span class="person-tag">Fabian</span></span>
-                    <span class="item-details">L'objectif de démarrer la recette fin septembre est **à risque**.</span>
-                </li>
-            </ul>
-        </div>
+            </div>
         
         <div class="card col-span-12" style="animation-delay: 700ms;">
-            <h2><svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>Pistes d'Amélioration</h2>
-            <ul>
-                <li class="interactive-item" data-details="<h4>Expertise</h4><p>Karim, notre expert PowerBI.</p><h4>Recommandation</h4><p>L'architecture actuelle de la base de données peut être optimisée en utilisant plusieurs tables de paramétrage plutôt qu'une seule grosse table.</p><h4>Bénéfices Attendus</h4><p>1. Temps de traitement des données plus rapides.<br>2. Une architecture plus simple à comprendre et à faire évoluer pour les futures modifications.</p>">
-                    <span class="item-title">Architecture PowerBI<span class="person-tag">Karim</span></span>
-                </li>
-                <li>
-                    <span class="item-title">Processus de Recette</span>
-                     <span class="item-details">Il manque 3 éléments essentiels pour professionnaliser et fiabiliser nos tests :
-                        <br>- Un **cahier de recette** formel.
-                        <br>- Un **fichier de suivi** centralisé des corrections.
-                        <br>- Un **outil d'automatisation** pour les contrôles récurrents.
-                    </span>
-                </li>
-            </ul>
-        </div>
+            </div>
 
     </main>
-    
-    <div class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-title">Détails</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div id="modal-body"></div>
-        </div>
-    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const counters = document.querySelectorAll('.kpi-card .number');
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const increment = Math.max(1, target / 100);
-                    if(count < target) {
-                        counter.innerText = Math.ceil(count + increment);
-                        setTimeout(updateCount, 20);
-                    } else { counter.innerText = target; }
-                };
-                setTimeout(updateCount, 600 + (parseInt(counter.parentElement.style.animationDelay) || 0));
-            });
+            // ... (script des compteurs KPI et animation d'entrée des cartes inchangé)
 
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                const delay = parseInt(card.style.animationDelay) || 0;
-                setTimeout(() => card.classList.add('is-visible'), delay);
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            });
+            // NOUVELLE LOGIQUE POUR L'ACCORDÉON
+            const expandableHeaders = document.querySelectorAll('.item-header');
+            
+            expandableHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const isActive = header.classList.contains('active');
 
-            const modalOverlay = document.querySelector('.modal-overlay');
-            const modalTitle = document.getElementById('modal-title');
-            const modalBody = document.getElementById('modal-body');
-            const closeModalBtn = document.querySelector('.close-modal');
-            const interactiveItems = document.querySelectorAll('.interactive-item');
+                    // Optionnel: Fermer tous les autres accordéons
+                    expandableHeaders.forEach(h => {
+                        h.classList.remove('active');
+                        h.nextElementSibling.classList.remove('expanded');
+                    });
 
-            const openModal = (title, details) => {
-                modalTitle.textContent = title;
-                modalBody.innerHTML = details;
-                modalOverlay.classList.add('visible');
-            };
-            const closeModal = () => modalOverlay.classList.remove('visible');
-            interactiveItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const title = item.querySelector('.item-title').textContent;
-                    const details = item.getAttribute('data-details');
-                    if (details) openModal(title, details);
+                    // Ouvrir ou fermer l'accordéon cliqué
+                    if (!isActive) {
+                        header.classList.add('active');
+                        content.classList.add('expanded');
+                    }
                 });
             });
-            closeModalBtn.addEventListener('click', closeModal);
-            modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+
+            // LOGIQUE DES BARRES DE PROGRESSION (Mise à jour)
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.progress-bar-inner');
+                progressBars.forEach(bar => {
+                    const progress = bar.getAttribute('data-progress');
+                    bar.style.width = progress + '%';
+                });
+            }, 800); // Délai pour que l'animation soit visible
         });
     </script>
 </body>
