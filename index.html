@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard de Projet V3 - MGEN</title>
+    <title>Dashboard de Projet Final - MGEN</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,19 +52,19 @@
         .card ul { list-style: none; padding-left: 0; margin-bottom: 0; }
         .card ul li { padding: 0; border-bottom: 1px solid #f0f0f0; }
         .card ul li:last-child { border-bottom: none; }
-        .card ul li.static-item { padding: 1rem; } /* Style pour les items non-cliquables */
+        .card ul li.static-item { padding: 1rem; }
 
         .item-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; cursor: pointer; transition: background-color 0.3s ease; border-radius: 8px; }
         .item-header:hover { background-color: #f8f9fa; }
         .item-title-container { flex-grow: 1; }
         .item-title { font-weight: 600; font-size: 1.05rem; }
         .person-tag { background-color: #e7f5ee; color: var(--color-primary); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-left: 8px; display: inline-block; }
-        .expand-icon { margin-left: 1rem; font-size: 1.5rem; font-weight: bold; transition: transform 0.3s ease; }
-        .item-header.active .expand-icon { transform: rotate(45deg); }
-        .details-content { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, opacity 0.5s ease, padding 0.5s ease; padding: 0 1rem; background-color: #fafafa; border-radius: 0 0 8px 8px; }
-        .details-content.expanded { opacity: 1; max-height: 500px; padding: 1.5rem 1rem; }
-        .details-section { margin-bottom: 1rem; }
-        .details-section:last-child { margin-bottom: 0; }
+        
+        .expand-icon { margin-left: 1rem; font-size: 1.5rem; font-weight: 300; line-height: 1; transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); }
+        .item-header.active .expand-icon { transform: rotate(135deg); }
+        .details-content { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, padding 0.4s ease-in-out; padding: 0 1.5rem; background-color: #f8f9fa; box-shadow: inset 0 4px 8px -4px rgba(0,0,0,0.05); }
+        .details-content.expanded { opacity: 1; max-height: 500px; padding: 1.5rem; }
+        .details-section { margin-bottom: 1rem; } .details-section:last-child { margin-bottom: 0; }
         .details-section h4 { font-size: 1rem; color: var(--color-primary); margin-bottom: 0.5rem; }
         .details-section p { margin: 0; padding-left: 1rem; white-space: pre-wrap; font-size: 0.9rem; }
         
@@ -83,110 +83,187 @@
 </head>
 <body>
 
-    <header class="header"> </header>
-    <section class="kpi-container"> </section>
+    <header class="header">
+        <div class="mgen-text">MGEN</div>
+        <h1>Dashboard : Industrialisation des Comptes de Résultat</h1>
+    </header>
+    
+    <section class="kpi-container">
+        <div class="kpi-card alert" style="animation-delay: 100ms;"><div class="number" data-target="1">0</div><div class="text">Point Bloquant</div></div>
+        <div class="kpi-card inprogress" style="animation-delay: 200ms;"><div class="number" data-target="4">0</div><div class="text">Tâches Majeures</div></div>
+        <div class="kpi-card info" style="animation-delay: 300ms;"><div class="number" data-target="2">0</div><div class="text">Améliorations Clés</div></div>
+    </section>
 
     <main class="dashboard-grid">
+        
         <div class="card success-card col-span-12" style="animation-delay: 400ms;">
-            <h2>Actions de la Semaine</h2>
+            <h2>
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Actions Récentes et Livrables Clés
+            </h2>
             <ul>
-                <li class="static-item"><span class="item-title">Mise en place du fichier de suivi des corrections et des arbitrages.</span></li>
-                <li class="static-item"><span class="item-title">Création d'un fichier de synthèse pour l'EB des données financières.</span></li>
+                <li>
+                    <div class="item-header">
+                        <div class="item-title-container"><span class="item-title">Mise en place d'un Fichier de Suivi (Excel)</span></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="details-content">
+                        <div class="details-section">
+                            <h4>Bénéfices</h4>
+                            <p>Ce nouvel outil, structuré en onglets (Dashboard, Base, Paramètres), simplifie le suivi et l'analyse. L'ajout de variables précises pour chaque correction offre une vision claire des points importants et accélère la prise de décision.</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-header">
+                        <div class="item-title-container"><span class="item-title">Création du Fichier de Synthèse (EB Financière)</span></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="details-content">
+                        <div class="details-section">
+                            <h4>Bénéfices</h4>
+                            <p>Le document est maintenant segmenté en onglets logiques, intégrant tableaux, exemples de calculs et une mise en forme améliorée. La lecture et la validation sont plus intuitives et rapides.</p>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
         
         <div class="card col-span-12 lg:col-span-6" style="animation-delay: 500ms;">
-             <h2>Travaux en Cours</h2>
+             <h2>
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 00.517 3.86l2.387.477a2 2 0 001.806-.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 00-.517-3.86l-2.387-.477zM11.428 1.428a2 2 0 00-1.022.547l-2.387.477a6 6 0 00-3.86-.517l-.318-.158a6 6 0 01-3.86-.517L.05 3.21a2 2 0 00-1.806-.547a2 2 0 00-.547 1.806l.477 2.387a6 6 0 00.517 3.86l.158.318a6 6 0 00.517 3.86l2.387.477a2 2 0 001.806.547a2 2 0 00.547-1.806l-.477-2.387a6 6 0 00-.517-3.86l-.158-.318a6 6 0 00-.517-3.86l2.387-.477a2 2 0 001.806-.547a2 2 0 00.547-1.806L9 1z"></path></svg>
+                Travaux en Cours
+            </h2>
             <ul>
                 <li>
-                    <div class="item-header"> </div>
-                    <div class="details-content"> </div>
+                    <div class="item-header">
+                        <div class="item-title-container"><span class="item-title">EB Données Financières<span class="person-tag">Morgane</span></span></div>
+                        <div class="progress-bar-container"><div class="progress-bar"><div class="progress-bar-inner" data-progress="95"></div></div><div class="progress-percentage">95%</div></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="details-content"><div class="details-section"><h4>Statut</h4><p>L'Expression de Besoin (EB) finalisée par Morgane est en cours de validation métier avant envoi à Thinhinane.</p></div></div>
                 </li>
                 <li>
-                    <div class="item-header"> </div>
-                    <div class="details-content"> </div>
+                    <div class="item-header">
+                        <div class="item-title-container"><span class="item-title">Recette Population<span class="person-tag">Fabian</span></span></div>
+                        <div class="progress-bar-container"><div class="progress-bar"><div class="progress-bar-inner" data-progress="80"></div></div><div class="progress-percentage">80%</div></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="details-content"><div class="details-section"><h4>Statut</h4><p>La recette sur le Datamart est presque terminée. Un rework est nécessaire pour remplacer l'âge annuel par l'âge réel (objectif fin septembre).</p></div></div>
                 </li>
                 <li>
-                    <div class="item-header"> </div>
-                    <div class="details-content"> </div>
+                    <div class="item-header">
+                        <div class="item-title-container"><span class="item-title">Intégration Dépendance<span class="person-tag">Coordination</span></span></div>
+                        <div class="progress-bar-container"><div class="progress-bar"><div class="progress-bar-inner" data-progress="20"></div></div><div class="progress-percentage">20%</div></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="details-content"><div class="details-section"><h4>Statut</h4><p>Le travail d'intégration dans l'EB 'Prestations' est en cours. Des variables techniques manquent dans la version actuelle.</p></div></div>
+                </li>
+                <li>
+                    <div class="item-header">
+                        <div class="item-title-container"><span class="item-title">Analyse "Ayants Droit"<span class="person-tag">Thinhinane</span></span></div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="details-content"><div class="details-section"><h4>Statut</h4><p>Suite au point de mardi, l'analyse confirme un souci de paramétrage. L'impact est à l'étude avant correction.</p></div></div>
                 </li>
             </ul>
         </div>
         
         <div class="card alert-card col-span-12 lg:col-span-6" style="animation-delay: 600ms;">
-             <h2>Alertes et Points de Blocage</h2>
+             <h2>
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                Alertes et Points de Blocage
+            </h2>
             <ul>
                 <li>
                     <div class="item-header">
-                        <div class="item-title-container">
-                            <span class="item-title">Accès ACCOLADE pour Recette Cotisations<span class="person-tag">Fabian</span></span>
-                        </div>
+                        <div class="item-title-container"><span class="item-title">Accès ACCOLADE pour Recette Cotisations<span class="person-tag">Yossi & Fabian</span></span></div>
                         <span class="expand-icon">+</span>
                     </div>
                     <div class="details-content">
-                        <div class="details-section">
-                            <h4>Problème Critique</h4><p>La recette du lot 'Cotisations' est totalement bloquée. Le démarrage, prévu fin septembre, est compromis.</p>
-                        </div>
-                        <div class="details-section">
-                            <h4>Cause</h4><p>Fabian n'a pas les accès nécessaires en lecture à l'outil ACCOLADE.</p>
-                        </div>
-                        <div class="details-section">
-                            <h4>Action en cours</h4><p>La demande d'accès a été faite, mais une procédure claire est attendue pour avancer.</p>
-                        </div>
+                        <div class="details-section"><h4>Problème Critique</h4><p>La recette du lot 'Cotisations' est totalement bloquée. Mes accès pour Yossi et Fabian n'ont pas encore été fournis.</p></div>
+                        <div class="details-section"><h4>Impact</h4><p>Le démarrage de cette phase, prévu fin septembre, est compromis tant que la situation n'est pas résolue.</p></div>
                     </div>
                 </li>
             </ul>
         </div>
         
         <div class="card col-span-12" style="animation-delay: 700ms;">
-            <h2>Pistes d'Amélioration</h2>
+            <h2>
+                <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                Pistes d'Amélioration
+            </h2>
             <ul>
                 <li>
                     <div class="item-header">
-                         <div class="item-title-container">
-                            <span class="item-title">Architecture PowerBI<span class="person-tag">Karim</span></span>
-                        </div>
+                         <div class="item-title-container"><span class="item-title">Architecture PowerBI<span class="person-tag">Karim</span></span></div>
                         <span class="expand-icon">+</span>
                     </div>
                     <div class="details-content">
-                        <div class="details-section">
-                            <h4>Expertise</h4><p>Karim, notre expert PowerBI.</p>
-                        </div>
-                        <div class="details-section">
-                            <h4>Recommandation</h4><p>L'architecture actuelle de la base de données peut être optimisée en utilisant plusieurs tables de paramétrage.</p>
-                        </div>
-                        <div class="details-section">
-                            <h4>Bénéfices Attendus</h4><p>1. Temps de traitement des données plus rapides.<br>2. Une architecture plus simple à comprendre et à faire évoluer.</p>
-                        </div>
+                        <div class="details-section"><h4>Recommandation</h4><p>L'expertise de Karim suggère d'optimiser l'architecture de la BDD en utilisant plusieurs tables de paramétrage.</p></div>
+                        <div class="details-section"><h4>Bénéfices Attendus</h4><p>1. Temps de traitement plus rapides.<br>2. Une architecture plus simple à comprendre et à faire évoluer.</p></div>
                     </div>
                 </li>
                 <li class="static-item">
                     <span class="item-title">Processus de Recette</span>
-                    <p style="font-size: 0.9rem; color: #555; padding-left: 1rem;">Il manque 3 éléments essentiels : un <b>cahier de recette</b> formel, un <b>fichier de suivi</b> centralisé, et un <b>outil d'automatisation</b> des contrôles.</p>
+                    <p style="font-size: 0.9rem; color: #555; padding-left: 1rem;">Manques identifiés : un <b>cahier de recette</b> formel, un <b>fichier de suivi</b> centralisé, et un <b>outil d'automatisation</b> des contrôles.</p>
                 </li>
             </ul>
         </div>
     </main>
-
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // ... (script des compteurs KPI et barres de progression inchangé)
+            // Animation des compteurs KPI
+            const counters = document.querySelectorAll('.kpi-card .number');
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const increment = Math.max(1, target / 100);
+                    if(count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 20);
+                    } else { counter.innerText = target; }
+                };
+                setTimeout(updateCount, 600 + (parseInt(counter.parentElement.style.animationDelay) || 0));
+            });
 
+            // Animation d'entrée des cartes
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const delay = parseInt(card.style.animationDelay) || 0;
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, delay);
+            });
+            
+            // Animation des barres de progression
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.progress-bar-inner');
+                progressBars.forEach(bar => {
+                    const progress = bar.getAttribute('data-progress');
+                    bar.style.width = progress + '%';
+                });
+            }, 800);
+
+            // Logique de l'accordéon
             const expandableHeaders = document.querySelectorAll('.item-header');
             expandableHeaders.forEach(header => {
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
                     const isActive = header.classList.contains('active');
                     
-                    // On ferme tous les accordéons avant d'en ouvrir un
                     expandableHeaders.forEach(h => {
                         if (h !== header) {
                             h.classList.remove('active');
-                            h.nextElementSibling.classList.remove('expanded');
+                            if (h.nextElementSibling && h.nextElementSibling.classList.contains('details-content')) {
+                                h.nextElementSibling.classList.remove('expanded');
+                            }
                         }
                     });
                     
-                    // On ouvre/ferme celui qui a été cliqué
                     header.classList.toggle('active');
                     content.classList.toggle('expanded');
                 });
