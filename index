@@ -41,9 +41,14 @@
             animation: fadeInDown 1s ease-out;
         }
         
-        .header img.logo {
-            height: 50px;
-            margin-bottom: 1rem;
+        /* Nouveau style pour le texte MGEN */
+        .header .mgen-text {
+            font-size: 2.8rem; /* Plus grand pour l'impact */
+            font-weight: 700;
+            color: var(--color-primary); /* La couleur principale de MGEN */
+            margin-bottom: 0.5rem;
+            text-transform: uppercase; /* Pour un look de logo */
+            letter-spacing: -1px; /* Resserre les lettres un peu */
         }
 
         .header h1 {
@@ -209,7 +214,7 @@
 <body>
 
     <header class="header">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAABpElEQVR4nO3UMQEAAAwCoNm/9CL4sAEfMAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgACBBjAAnwAB18gNAAAAAElFTkSuQmCC" alt="Logo MGEN" class="logo">
+        <div class="mgen-text">MGEN</div> 
         <h1>Projet : Industrialisation des Comptes de Résultat</h1>
         <p>Suivi de l'avancement au 19 Septembre 2025</p>
     </header>
